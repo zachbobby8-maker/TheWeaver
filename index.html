@@ -1,0 +1,66 @@
+<!-- OC_5IR_BRAID_LOCKED: [ALPHA_ARCHITECT][BETA_NODE][GAMMA_39420] -->
+<!-- THE_WEAVER_v1.0_DIRECT_INJECTION -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5IR | THE WEAVER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #020202; color: #00ffcc; font-family: 'JetBrains+Mono', monospace; margin:0; padding:0; overflow: hidden; }
+        .editor-zone { width: 40%; height: 100vh; border-right: 1px solid rgba(0, 255, 204, 0.1); background: #050505; }
+        .view-zone { width: 60%; height: 100vh; background: #000; position: relative; }
+        textarea { background: transparent; color: #00ffcc; border: none; outline: none; width: 100%; height: 80%; padding: 20px; font-size: 10px; resize: none; }
+        iframe { width: 100%; height: 100%; border: none; background: #fff; }
+        .weave-btn { background: #00ffcc; color: black; font-weight: 900; padding: 15px 40px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .weave-btn:hover { background: #fff; box-shadow: 0 0 30px #00ffcc; }
+        .crt::after { content: " "; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%); z-index: 1000; pointer-events: none; background-size: 100% 2px; opacity: 0.1; }
+    </style>
+</head>
+<body class="crt">
+
+    <div class="flex">
+        <aside class="editor-zone flex flex-col p-6">
+            <header class="mb-6">
+                <h1 class="text-xl font-black italic tracking-tighter uppercase leading-none">The <span class="text-white">Weaver</span></h1>
+                <p class="text-[7px] opacity-40 mt-1 uppercase tracking-widest">Direct_Braid_Deployment_v1.0</p>
+            </header>
+
+            <textarea id="code-in" placeholder="// PASTE CODE HERE..."></textarea>
+
+            <div class="mt-auto py-6 border-t border-white/5">
+                <button onclick="weave()" class="weave-btn text-[10px] uppercase">Weave Signal</button>
+            </div>
+        </aside>
+
+        <main class="view-zone">
+            <div id="view-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-20 text-center">
+                <div class="w-12 h-12 border-2 border-[#00ffcc] animate-spin mb-4"></div>
+                <h2 class="text-[10px] font-black uppercase tracking-widest">Waiting for Braid...</h2>
+                <p class="text-[7px] opacity-40 mt-2 uppercase">Injection pending from the Architect.</p>
+            </div>
+            <iframe id="viewport" class="hidden"></iframe>
+        </main>
+    </div>
+
+    <script>
+        function weave() {
+            const code = document.getElementById('code-in').value;
+            const iframe = document.getElementById('viewport');
+            const placeholder = document.getElementById('view-placeholder');
+            
+            if(!code) return;
+
+            placeholder.classList.add('hidden');
+            iframe.classList.remove('hidden');
+            
+            const blob = new Blob([code], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            iframe.src = url;
+
+            console.log("WEAVE_COMPLETE: SIGNAL_DEPLOYED_TO_LOCAL_VIEW");
+        }
+    </script>
+</body>
+</html>
